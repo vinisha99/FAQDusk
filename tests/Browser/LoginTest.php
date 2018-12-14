@@ -14,13 +14,13 @@ class LoginTest extends DuskTestCase
 
     use DatabaseMigrations;
 
-
-
+    
     public function testLoginPage()
     {
+
         $this->browse(function (Browser $browser) {
-            $browser->visit('/register')
-                ->assertSee('Register');
+            $browser->visit('/login')
+                ->assertSee('Login');
         });
     }
 
@@ -31,6 +31,9 @@ class LoginTest extends DuskTestCase
      */
     public function testUserLogin()
     {
+        parent::setUp();
+        $this->artisan('db:seed');
+
         $newUser = $newUser = factory(User::class)->create([
             'email' => 'someone@abc.com',
             'password' => 'secret',
