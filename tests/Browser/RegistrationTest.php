@@ -26,7 +26,7 @@ class RegistrationTest extends DuskTestCase
     /*
 
      */
-  /*  public function testUserRegistration()
+    public function testUserRegistration()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/register')
@@ -37,5 +37,5 @@ class RegistrationTest extends DuskTestCase
                     ->assertPathIs('/home')
                 ;
         });
-    }*/
+    }
 }
