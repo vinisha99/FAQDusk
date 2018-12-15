@@ -37,7 +37,6 @@ class QuestionTest extends DuskTestCase
         $newUser = factory(User::class)->create([
             'email' => 'someone@abc.com',
             'password' => 'secret',
-
         ]);
 
         $this->browse(function (Browser $browser) {
@@ -45,10 +44,30 @@ class QuestionTest extends DuskTestCase
                 ->visit('/home')
                 ->ClickLink('Create a Question')
                 ->assertPathIs('/questions/create');
-
         });
 
     }
+
+
+    public function testAddQuestion()
+    {
+        $newUser = factory(User::class)->create([
+            'email' => 'someone@abc.com',
+            'password' => 'secret',
+        ]);
+
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
+                ->visit('/questions/create')
+                ->type('body', 'This is the First question')
+                ->press('Save')
+                ->assertPathIs('/home')
+                ->assertSee('IT WORKS!');
+        });
+
+    }
+
+
 
 
 }
