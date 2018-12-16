@@ -12,72 +12,13 @@ class QuestionTest extends DuskTestCase
 {
 
     use DatabaseMigrations;
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
-
-    //public $questionID = 0;
-
-
-    public function testQuestionPage()
-    {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-
-        ]);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
-                ->visit('/home')
-                ->assertSee('Questions');
-            });
-    }
-
-
-    public function testCreateQuestionsButton()
-    {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-        ]);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
-                ->visit('/home')
-                ->clickLink('Create a Question')
-                ->assertPathIs('/questions/create');
-        });
-
-    }
-
-
-    public function testNoQuestions()
-    {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-        ]);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
-                ->visit('/home')
-                ->assertDontSee('View');
-        });
-    }
-
 
     public function testAddQuestion()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-        ]);
+        $newUser = setup::CreateUser();
 
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
+        $this->browse(function (Browser $browser) use($newUser) {
+            $browser->loginAs($newUser)
                 ->visit('/questions/create')
                 ->type('body', 'This is the First question')
                 ->press('Save')
@@ -90,53 +31,28 @@ class QuestionTest extends DuskTestCase
 
     public function testViewQuestion()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-        ]);
+        $newUser = setup::CreateUser();
+        $newQuestion = setup::createQuestion();
 
-        $newQuestion = factory(Question::class)->create([
-            'user_id' => User::where(['email' => 'someone@abc.com'])->first()->id,
-            'body' => 'This question is created for testing'
-        ]);
-
-        $newQuestion->save();
-        $questionID = '/questions/' . $newQuestion->id;
-
-        // dd($questionID);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
+        $this->browse(function (Browser $browser) use($newUser, $newQuestion) {
+            $browser->loginAs($newUser)
                 ->visit('/home')
                 ->clickLink('View')
-                ->assertPathIs('/questions/1')
+                ->assertPathIs('/questions/'.$newQuestion->id)
                 ->assertSee('This question is created for testing');
         });
     }
 
 
 
-
     public function testEditQuestion()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-        ]);
+        $newUser = setup::CreateUser();
+        $newQuestion = setup::createQuestion();
 
-        $newQuestion = factory(Question::class)->create([
-            'user_id' => User::where(['email' => 'someone@abc.com'])->first()->id,
-            'body' => 'This question is created for testing'
-        ]);
-
-        $newQuestion->save();
-        /*$questionID = '/questions/'.$newQuestion->id;
-        $questionID->toString();*/
-
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
-                ->visit('/questions/1')
+        $this->browse(function (Browser $browser) use($newUser, $newQuestion) {
+            $browser->loginAs($newUser)
+                ->visit('/questions/'.$newQuestion->id)
                 ->clickLink('Edit Question')
                 ->type('body','The first question is edited')
                 ->press('Save')
@@ -149,34 +65,17 @@ class QuestionTest extends DuskTestCase
 
     public function testDeleteQuestion()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-        ]);
+        $newUser = setup::CreateUser();
+        $newQuestion = setup::createQuestion();
 
-        $newQuestion = factory(Question::class)->create([
-            'user_id' => User::where(['email' => 'someone@abc.com'])->first()->id,
-            'body' => 'This question is created for testing'
-        ]);
-
-        $newQuestion->save();
-        /*$questionID = '/questions/'.$newQuestion->id;
-        $questionID->toString();*/
-
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
-                ->visit('/questions/1')
+        $this->browse(function (Browser $browser) use($newUser, $newQuestion) {
+            $browser->loginAs($newUser)
+                ->visit('/questions/'.$newQuestion->id)
                 ->press('Delete')
                 ->assertSee('Deleted');
 
         });
 
     }
-
-
-
-
-
 
 }

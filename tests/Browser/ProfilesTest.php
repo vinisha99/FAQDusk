@@ -16,35 +16,13 @@ class ProfilesTest extends DuskTestCase
      *
      * @return void
      */
-    public function testViewCreateProfile()
-    {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-
-        ]);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
-                ->visit('/home')
-                ->clickLink('My Account')
-                ->clickLink('Create Profile')
-                ->assertPathIs('/user/1/profile');
-        });
-
-    }
-
 
     public function testCreateProfile()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
+        $newUser = setup::CreateUser();
 
-        ]);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
+        $this->browse(function (Browser $browser) use($newUser) {
+            $browser->loginAs($newUser)
                 ->visit('/home')
                 ->clickLink('My Account')
                 ->clickLink('Create Profile')
@@ -60,47 +38,26 @@ class ProfilesTest extends DuskTestCase
 
     public function testViewMyProfile()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
+        $newUser = setup::CreateUser();
+        $newProfile = setup::createProfile();
 
-        ]);
-
-        $newProfile = factory(Profile::class)->create([
-            'user_id' => $newUser->id,
-            'fname' => 'John',
-            'lname' => 'Doe',
-            'body' => 'Profile created for Laravel Testing.'
-        ]);
-
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
+        $this->browse(function (Browser $browser) use($newUser, $newProfile) {
+            $browser->loginAs($newUser)
                 ->visit('/home')
                 ->clickLink('My Account')
                 ->clickLink('My Profile')
-                ->assertPathIs('/user/1/profile/1');
+                ->assertSee('My Profile');
         });
 
     }
 
     public function testEditMyProfile()
     {
-        $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
+        $newUser = setup::CreateUser();
+        $newProfile = setup::createProfile();
 
-        ]);
-
-        $newProfile = factory(Profile::class)->create([
-            'user_id' => $newUser->id,
-            'fname' => 'John',
-            'lname' => 'Doe',
-            'body' => 'Profile created for Laravel Testing.'
-        ]);
-
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::where(['email' => 'someone@abc.com'])->first())
+        $this->browse(function (Browser $browser) use($newUser) {
+            $browser->loginAs($newUser)
                 ->visit('/home')
                 ->clickLink('My Account')
                 ->clickLink('My Profile')

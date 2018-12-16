@@ -15,36 +15,37 @@ class LoginTest extends DuskTestCase
     use DatabaseMigrations;
 
 
-    public function testLoginPage()
+    public function testUserLogin()
     {
 
         $this->browse(function (Browser $browser) {
-            $browser->visit('/login')
-                ->assertSee('Login');
+            $browser->visit('/register')
+                ->type('email', 'someone@abc.com')
+                ->type('password', 'secret')
+                ->type('password_confirmation', 'secret')
+                ->press('Register')
+                ->assertPathIs('/home')
+                ->clickLink('My Account')
+                ->clickLink('Logout')
+                ->clickLink('Login')
+                ->type('email', 'someone@abc.com')
+                ->type('password', 'secret')
+                ->press('Login')
+                ->assertPathIs('/home');
         });
     }
 
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
-    public function testUserLogin()
+    public function testUserLogout()
     {
-        parent::setUp();
-        $this->artisan('db:seed');
+        $newUser = setup::CreateUser();
 
-        $newUser = $newUser = factory(User::class)->create([
-            'email' => 'someone@abc.com',
-            'password' => 'secret',
-
-        ]);
-
-        $this->browse(function (Browser $browser) {
-
-            $browser->loginAs(User::where(['email'=>'someone@abc.com'])->first())
+        $this->browse(function (Browser $browser) use ($newUser) {
+            $browser->loginAs($newUser)
                 ->visit('/home')
-                ->assertSee('Home');
+                ->clickLink('My Account')
+                ->clickLink('Logout')
+                ->assertPathIs('/');
         });
+
     }
 }
