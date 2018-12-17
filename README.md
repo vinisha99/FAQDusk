@@ -2,46 +2,50 @@
 
 **Epics:**  
 **1. Registration Test**   
-Test Case: As a new user I want to register myself into the system from home page
-Steps: Click register from home page    
-Enter email ID , Password and Password confirmation
-Acceptance criteria: User is successfully registered
+Test Case: As a new user I want to register myself into the system from home page                                            
+Steps:                                                                                                                          i. Click register from home page                                                                                         
+ii. Enter email ID , Password and Password confirmation                                                                       
+Acceptance criteria: User is successfully registered                                                                         
+Status: Successful                                                                                                           
+
+**2. Login Test**                                                                                                             
+Test Case: As a registered user I want to login into the system to access my home page.                                
+Steps:                                                                                                                          i. From home page click on login                                                                                      
+i. Enter email and password                                                                                                   
+ii. click on Login button                                                                                               Acceptance Criteria: User is successfully logged into his account                                                             
+Status: Successful                                                                                                        
+
+Test Case: As a registered user I want to logout from the system.                                                           
+Steps:                                                                                                                          i. From home page click on My Account                                                                                    
+ii. Click on Logout option from dropdown                                                                                        Acceptance Criteria: User is successfully logged out from System                                                               
+Status: Successful                                                                                                          
+
+**3. Questions Test**                                                                                                        
+Test Case: as a logged in user I want to add new questions to be visible ion my profile                                      
+Steps:                                                                                                                          i. Click the Create a Question button from home page                                                                      
+ii. Type the question in body section                                                                                             
+iii. click on save                                                                                                                 
+Acceptance Criteria: A successful `II WORKS!` message is flashed after question is added into home page.                    
+Status: Successful                                                                                              
+
+Test Case: As a logged in user I should be able to view my questions                                                       
+Steps:                                                                                                                          i. From home page click the View button on the question you want to view                                                   
+Acceptance Criteria: The question opens up in a new page                                                                   
+Status: Successful                                                                                                         
+
+Test Case: As a logged in user I want to edit the questions to update them                                            
+Steps:                                                                                                                          i. Click on the view button of the question you want to edit                                                               
+ii. Click on Edit Question button                                                                                            
+iii. Edit the question in body section                                                                                        
+iv. Click on Save                                                                                                            
+Acceptance Criteria: Question should be successfully updated with a `Saved` message flashed in green                        
 Status: Successful
 
-**2. Login Test**
-Test Case: As a registered user I want to login into the system to access my home page.
-Steps: From home page click on login
-Enter email and password
-click on Login button
-Acceptance Criteria: User is successfully logged into his account
-Status: Successful
-
-**3. Questions Test**
-Test Case: as a logged in user I want to add new questions to be visible ion my profile
-Steps: Click the Create a Question button from home page
-Type the question in body section 
-click on save
-Acceptance Criteria: A successful `II WORKS!` message is flashed after question is added into home page.
-Status: Successful
-
-Test Case: As a logged in user I should be able to view my questions
-Steps: From home page click the View button on the question you want to view
-Acceptance Criteria: The question opens up in a new page
-Status: Successful 
-
-Test Case: As a logged in user I want to edit the questions to update them
-Steps: Click on the view button of the question you want to edit
-Click on Edit Question button
-Edit the question in body section
-Click on Save
-Acceptance Criteria: Question should be successfully updated with a `Saved` message flashed in green
-Status: Successful
-
-Test Case: As a logged in user I want to delete a question to remove them
-Steps: Click on the View button of the question you want to delete
-Click on Delete button
-Acceptance Criteria: Question is successfully deleted with a `Deleted` message flashed in green
-Status: Successful
+Test Case: As a logged in user I want to delete a question to remove them                                                   
+Steps: Click on the View button of the question you want to delete                                                             
+Click on Delete button                                                                                                         
+Acceptance Criteria: Question is successfully deleted with a `Deleted` message flashed in green                        
+Status: Successful                                                                                                  
 
 **4. Answers Test**
 Test Case: As a logged in user I want to add answer for the question
