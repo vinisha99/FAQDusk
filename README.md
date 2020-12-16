@@ -2,16 +2,16 @@
 - Testing of a self created FAQ blog application using Laravel Dusk API.
 
 # Contents
-- [Setting up in phpStorm](#Setting-up-project-in-phpStorm:)
-- [Setting up in Heroku](#Setting-up-Heroku)
-- [Test Cases](#Test-Cases)
+- [Setting up in phpStorm](#setting-up-in-phpStorm)
+- [Setting up in Heroku](#setting-up-Heroku)
+- [Test Cases](#test-cases)
 
 
 **[GitHub Clone URL](https://github.com/vinisha99/FAQDusk.git)**                                                               
 **[Heroku Link](https://faq-dusk.herokuapp.com/)**
 
 
-# Setting up project in phpStorm:
+# Setting up in phpStorm
 1. Clone the project from above link and add it in your phpStorm
 2. Execute the command `composer install`
 3. Create a file named `database.sqlite` into the database folder
