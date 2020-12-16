@@ -1,8 +1,12 @@
-#Topic: **Laravel Dusk Testing**
+# Laravel Dusk Testing
+- Testing of a self created FAQ blog application using Laravel Dusk API.
+
+# Contents
+[Setting up in phpStorm](#Setting-up-project-in-phpStorm:)
 
 
-**GitHub Clone URL:** https://github.com/vinisha99/FAQDusk.git                                                              
-**Heroku Link:** https://faq-dusk.herokuapp.com/
+**[GitHub Clone URL](https://github.com/vinisha99/FAQDusk.git)**                                                               
+**[Heroku Link](https://faq-dusk.herokuapp.com/)**
 
 **Setting up project in phpStorm:**
 1. Clone the project from above link and add it in your phpStorm
