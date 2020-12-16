@@ -2,13 +2,16 @@
 - Testing of a self created FAQ blog application using Laravel Dusk API.
 
 # Contents
-[Setting up in phpStorm](#Setting-up-project-in-phpStorm:)
+- [Setting up in phpStorm](#Setting-up-project-in-phpStorm:)
+- [Setting up in Heroku](#Setting-up-Heroku)
+- [Test Cases](#Test-Cases)
 
 
 **[GitHub Clone URL](https://github.com/vinisha99/FAQDusk.git)**                                                               
 **[Heroku Link](https://faq-dusk.herokuapp.com/)**
 
-**Setting up project in phpStorm:**
+
+# Setting up project in phpStorm:
 1. Clone the project from above link and add it in your phpStorm
 2. Execute the command `composer install`
 3. Create a file named `database.sqlite` into the database folder
@@ -20,9 +23,10 @@
 9. In the terminal execute the command `php artisan migrate:refresh`
 10. Now run the project.
 
-**Setting up Heroku**
 
-1. In the terminal execute the following commands:                                                                  app_name=heroku-app-name                                                                                                      
+# Setting up Heroku
+1. In the terminal execute the following commands:
+app_name=heroku-app-name                                                                                                      
 heroku apps:create $app_name                                                                                                   
 heroku addons:create heroku-postgresql:hobby-dev --app $app_name                                                          
 heroku config:set APP_KEY=$(php artisan --no-ansi key:generate --show)                                                    
@@ -33,8 +37,7 @@ git push heroku master
 heroku run php artisan migrate                                                                                                
 
 
-
-**Test Cases**  
+# Test Cases  
 **1. Registration Test**   
 **Test Case:** As a new user I want to register myself into the system from home page                                           
 **Steps:**                                                                                                                    
@@ -118,38 +121,26 @@ v. Click on Save
 **Acceptance Criteria:** An Answer to the question is updated with a successful message `Updated` flashed in green              
 **Status:** Successful                                                                                                          
 
-**Test Case:** As a logged in user I want to delete an answer to remove it                                                                                                          
-**Steps:**                                                                                                           
-i. Click on the view button of the question you want to edit                                                                                                          
-ii. Click on the View button of the Answer you want to delete                                                                                                          
-iii. Click on Delete Button                                                                                                          
+**Test Case:** As a logged in user I want to delete an answer to remove it                                                                                         **Steps:**                                                                                                           
+i. Click on the view button of the question you want to edit                                                                                                       ii. Click on the View button of the Answer you want to delete                                                                                                       iii. Click on Delete Button                                                                                                          
 **Acceptance Criteria:** An Answer to the question is deleted with a successful message `Delete` flashed in green
 **Status:** Successful                                                                                                          
 
 **4. Profile Tests**                                                                                                          
 **Test Case:** As a logged in user I want to create my Profile                                                                                                          
 **Steps:**                                                                                                          
-i. From home page click on My account at the right top of the page                                                                                                          
-ii. Select Create Profile
-iii. Enter details in First name, Last name and Body fields                                                                                                          
-iv. Click on Save                                                                                                          
-**Acceptance Criteria:** `Profile created` Message is flashed on the Screen                                                                                                          
-**Status:** Successful                                                                                                          
+i. From home page click on My account at the right top of the page                                                                                                 ii. Select Create Profile
+iii. Enter details in First name, Last name and Body fields                                                                                                         iv. Click on Save                                                                                                          
+**Acceptance Criteria:** `Profile created` Message is flashed on the Screen                                                                                         **Status:** Successful                                                                                                          
 
-**Test Case:** As a logged in user I want to view my Profile                                                                                                           
-**Steps:**                                                                                                                                                                                                                    
-i. From home page click on My account at the right top of the page                                                                                                          
-ii. Select My Profile                                                                                                          
+**Test Case:** As a logged in user I want to view my Profile                                                                                                       **Steps:**                                                                                                                                                         i. From home page click on My account at the right top of the page                                                                                                 ii. Select My Profile                                                                                                          
 **Acceptance Criteria:** Profile Details can be viewed                                                                                                          
 **Status:** Successful                                                                                                          
 
-**Test Case:** As a logged in user I want to edit my Profile to update it                                                                                                          
-**Steps:**                                                                                                          
-i. From home page click on My account at the right top of the page                                                                                                          
-ii. Select My Profile                                                                                                          
+**Test Case:** As a logged in user I want to edit my Profile to update it                                                                                           **Steps:**                                                                                                          
+i. From home page click on My account at the right top of the page                                                                                                 ii. Select My Profile                                                                                                          
 iii. Click on Edit                                                                                                          
 iv. Edit the desired fields                                                                                                          
 v. Click on Save                                                                                                          
-**Acceptance Criteria:** `Profile Updated` Message is flashed on the Screen                                                                                                          
-**Status:** Successful
+**Acceptance Criteria:** `Profile Updated` Message is flashed on the Screen                                                                                         **Status:** Successful
 
